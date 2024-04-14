@@ -1,11 +1,17 @@
 import { RecoilRoot } from 'recoil';
-
+import TopBar from './components/TopBar';
+import Issues from './components/Issues';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend'
 function App() {
   return (
-    <RecoilRoot>  
+    <RecoilRoot>
+      <DndProvider backend={HTML5Backend}>  
       <>
-        <h1>Hello World</h1>
+        <TopBar />
+        <Issues/>
       </>
+      </DndProvider> 
     </RecoilRoot>
   )
 }
