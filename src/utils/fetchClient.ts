@@ -1,10 +1,6 @@
 import { Octokit } from 'octokit';
 import { RequestOptions, UrlParams } from './types/fetchClient.types';
 
-const octokit = new Octokit({
-  auth: ''
-})
-
 type RequestMethod = 'GET';
 
 function request<T>(
