@@ -6,35 +6,44 @@ import { convertCreatedToTime } from '../../../../utils/converters/CreatedToTime
 import { DraggableItems } from '../../../../utils/constants/draggableItems.constants';
 
 type IssueItemProps = {
-  issue: GitHubCardIssue,
-  dropIndex: number,
-  index: number,
+  issue: GitHubCardIssue
+  dropIndex: number
+  index: number
   changeDropIndex: (index: number) => void
 }
 
-const IssueItem: React.FC<IssueItemProps> = ({ issue, dropIndex, index, changeDropIndex }) => {
+const IssueItem: React.FC<IssueItemProps> = (
+  {
+    issue,
+    dropIndex,
+    index,
+    changeDropIndex
+  }
+) => {
   const [{ opacity }, dragRef] = useDrag(
     () => ({
-      item: {
-        ID: issue.id,
-        type: DraggableItems.IssueCard,
-        dropIndex
+      item: function () {
+        return {
+          ID: issue.id,
+          type: DraggableItems.IssueCard,
+          dropIndex
+        }
       },
       type: DraggableItems.IssueCard,
       collect: (monitor) => ({
-        opacity: monitor.isDragging() ? 0.1 : 1
+        opacity: monitor.isDragging() ? 0.1 : 1,
       })
     }),
     []
   )
+
   const formatedDate = convertCreatedToTime(issue.created_at)
   return (
       <Stack className="mx-auto">
          <Card 
           ref={dragRef} 
           style={{ width: '18rem', opacity }}
-          onMouseDownCapture={() => {
-            console.log(index)
+          onDrop={() => {
             changeDropIndex(index)  
           }}
          >

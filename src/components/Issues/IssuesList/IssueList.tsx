@@ -1,4 +1,4 @@
-import IssueItem from './IssueItem';
+import IssueItem from './IssueItem/IssueItem';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -17,18 +17,22 @@ type IssuesListProp = {
 const IssuesList: React.FC<IssuesListProp> = ({listTitle, issues, issueStatus}) => {
   const [dropIndex, setDropIndex] = useState<number>(0)
   const changeDropIndex = (index: number) => {
-    setDropIndex(_ => index)
+    setDropIndex(() => index)
   }
+
   return (
     <Container>
       <Row>
-        <Col className="px-0">
+        <Col className="px-0 pt-2 rounded bg-light">
           <h2 className="text-center">{listTitle}</h2>
         </Col>
       </Row>
       <Row className='bg-light py-4 rounded'>
         <Col className="px-0">
-          <IssueTarget status={issueStatus} >
+          <IssueTarget 
+            status={issueStatus}
+            dropIndex={dropIndex}
+          >
             <Stack className="gap-2">
               {issues.map((issue, index) => (
                 <IssueItem 

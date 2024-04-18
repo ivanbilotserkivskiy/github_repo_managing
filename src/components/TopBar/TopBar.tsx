@@ -1,21 +1,21 @@
-import TopBarInfo from "./Info";
-import TopBarRating from "./Rating";
-import SearchBar from "./Searchbar";
+import TopBarInfo from "./Info/Info";
+import SearchBar from "./Searchbar/SearchBar";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-export default function TopBar () {
+const TopBar = () => {
   return (
-    <Container>
+    <Container className="p-4">
       <SearchBar/>
       <Row>
         <Col className="d-flex gap-4">
           <TopBarInfo/>
-          <TopBarRating />
         </Col>
       </Row>
     </Container>
   )
 }
+
+export default TopBar
